@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js" ></script>
+    <style>
+        *{
+            margin-top: 10px;
+        }
+        .sty1{
+            height: 50px;
+            background-color: aquamarine;
+
+        }
+        .box1{
+            padding: 5px;
+            background-color: aqua;
+        }
+        .box2{
+
+            padding-left: 5px;
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <!-- 1. prevent 阻止事件的发生 -->
+        <div>
+            <a :href="url" @click.prevent="showInfo">点我跳转</a>
+        </div>
+        <!-- 2. .stop  阻止事件冒泡 -->
+        <div class="sty1" @click="showInfo">
+            <button @click.stop="showInfo">点我提示信息</button>
+        </div>
+        <!-- 3. .once 事件只执行一次 -->
+        <button @click.once="showInfo">弹窗只执行一次</button></button>
+
+        <!-- 4. .capture 事件的捕获  会让有捕获的先执行，这可能打乱正常的顺序-->
+        <div class="box1" @click.capture="showInfo(1)">
+            div1
+            <div class="box2" @click="showInfo(2)">
+                div2 
+            </div>
+        </div>
+        <!-- 5. .self 只有事件是e.target 时才执行 -->
+        <div class="sty1" @click.self="showInfo2">
+            <button @click="showInfo1">点我提示信息</button>
+
+        </div>
+
+
+
+    </div>
+
+
+    <script type="text/javascript">
+
+        Vue.config.productionTip = false;
+        new Vue({
+            el: '#root',
+            data: {
+                url: 'http://www.baidu.com'
+                   
+                },
+            methods: {
+                showInfo(){
+                    alert('同学你好！！！')
+                   
+
+                },
+                showInfo1(e){
+                    // console.log(e);
+                    alert('我是showInfo1')
+
+                },
+                showInfo2(e){
+                    // console.log(e);
+                    alert('我是showInfo2')
+
+                },
+                showInfo(msg){
+                    // console.log(msg);
+                    alert(msg)
+                }
+            },
+            })
+    </script>
+    
+</body>
+</html>

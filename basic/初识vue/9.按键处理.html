@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js" ></script>
+</head>
+<body>
+    <div id="root">
+        <!-- 1. 第一种 直接是已经定义好的  如enter keyCode是13  -->
+        <input type="text" placeholder="请输入文字--普通" @keyup.enter="showInfo"></input> 
+        <br>
+        <!-- 2. 第二种 特殊的如Ctrl shift win/command 要加原来的字符的基础上再加一个其他的任意字符 如y -->
+        <input type="text" placeholder="请输入文字---特殊 如ctrl shift" @keyup.ctrl="showInfo"></input> <br>
+        <!-- 3. 第三种 如果是由两个字符组成的 要使用分隔符 ’-‘ 才能用 如CapsLock 用 cap-lock -->
+        <input type="text" placeholder="请输入文字" @keyup.caps-lock="showInfo"></input> <br>
+        <!-- 4. 第四种 自定义别名的字符 如修改@keyup.enter 为 @keyup.huiche 需要添加Vue.config.keyCodes.huiche -->
+        <input type="text" placeholder="请输入文字" @keyup.huiche="showInfo"></input>
+    
+
+    </div>
+
+
+    <script type="text/javascript">
+
+        Vue.config.productionTip = false;
+        // 注意 该行为上述第四种中的一个步骤 必须添加 否则vue不认识
+        Vue.config.keyCodes.huiche = 13;
+        new Vue({
+            el: '#root',
+            data: {
+                   
+                },
+                methods: {
+                showInfo(e){
+                    console.log(e.key,e.keyCode)
+                }
+            },
+            }
+            
+            )
+    </script>
+    
+</body>
+</html>

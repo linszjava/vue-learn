@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js" ></script>
+</head>
+<body>
+    <div id="root">
+        <!-- 使用watch 完成列表的模糊搜索过滤 -->
+    
+        <input type="text" placeholder="请输入想要搜索的诗人" v-model="keyword"></input>
+        <button @click="sortType = 0">原顺序</button>
+        <button @click="sortType = 1">升顺序</button>
+        <button @click="sortType = 2">降顺序</button>
+        <ul>
+            <li v-for="p in hitList" :key="p.id">
+                {{p.id}}-{{p.name}}-{{p.sex}}--{{p.age}}</li>
+        </ul>
+
+    </div>
+
+
+    <script type="text/javascript">
+
+        Vue.config.productionTip = false;
+        new Vue({
+            el: '#root',
+            data: {
+                sortType: 0,
+                personList:[
+                    {id: 001, name: '李清照',age: 18,sex:'女'},
+                    {id: 002, name: '李白', age: 20, sex:'男'},
+                    {id: 003, name: '白居易', age: 23 , sex: '男'},
+                    {id: 004, name: '易安居士', age: 18, sex: '女'}
+                ],
+                keyword:''
+                   
+                },
+                computed:{  // 计算出来的  有return 
+                    hitList(){
+                        const arr =  this.personList.filter(p =>{
+                            return p.name.indexOf(this.keyword) !== -1
+                        })
+                        if(this.sortType){ // 不为0
+                            // 那要么是1升序 2 降序
+                            arr.sort((p1,p2)=>{
+                                return this.sortType === 1? p1.age - p2.age : p2.age - p1.age})
+
+                        }
+                        return arr 
+                    }
+                }
+            })
+    </script>
+    
+</body>
+</html>

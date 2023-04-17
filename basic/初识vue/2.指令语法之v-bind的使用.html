@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>指令语法之v-bind的使用</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!--  本节主要测试指令语法之v-bind的使用
+            用法: 写在标签里 ，这是与插值语法最直接的不同  -->
+    <div id="root">
+        <h2>hello, {{name}}</h2>
+        <hr/>
+        <h3>指令语法之v-bind的使用</h3>
+        <a :href="school.url">学校名：{{school.name}}</a>
+    </div>
+
+    <script type="text/javascript">
+
+        Vue.config.productionTip = false;
+        new Vue({
+            el: '#root',
+            data() {
+                return {
+                    name: 'linsz',
+                    school: {
+                        name: 'xiamenuni',
+                        url: 'http://xiamenuni.com'
+                    }
+                };
+            },
+        })
+    </script>
+    
+</body>
+</html>

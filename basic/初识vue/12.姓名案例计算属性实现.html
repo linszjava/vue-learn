@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js" ></script>
+</head>
+<body>
+    <div id="root">
+        姓：<input type="text" placeholder="请输入姓" v-model="firstName"></input> <br>
+        名：<input type="text" placeholder="请输入名" v-model="lastName"></input> <br>
+        <!-- 注意 computed不是一个函数 不能写成fullName() -->
+        <span>全名： {{fullName}} </span> <br>
+        <span>利用setter的全名:{{fullName2}} </span>
+
+    </div>
+
+
+    <script type="text/javascript">
+
+        Vue.config.productionTip = false;
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                firstName:'张',
+                lastName: '三'
+                   
+                },
+            computed:{
+                // 只有get()没有set() 可以简写为如下方式
+                fullName(){
+                    return this.firstName +'-'+this.lastName
+                },
+                fullName2:{
+                    get(){
+                        console.log('@---getter被调用了');
+                        return this.firstName +'-'+this.lastName;
+                    },
+                    set(value){
+                        const arr = value.slice('-');
+                        this.firstName = arr[0];
+                        this.lastName = arr[1];
+
+                    }
+
+                }
+            }
+            })
+    </script>
+    
+</body>
+</html>

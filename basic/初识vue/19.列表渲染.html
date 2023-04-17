@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js" ></script>
+</head>
+<body>
+    <div id="root">
+        <!-- 列表渲染 -->
+        <!-- v-for 的使用 -->
+        <!-- 1. 数组使用 -->
+        <ul v-for="(p,index) in personList" :key="index">
+            <li>{{p.id}}-{{p.name}}-{{index}}</li>
+        </ul> <br/>
+        <!-- 2. 字符串 -->
+        <ul v-for="s,index of str">
+            <li>{{s}}--{{index}}</li>
+        </ul> <br/>
+
+        <!-- 3. 对象 -->
+        <ul v-for="(u,key,index) of university" :key="index">
+            <li>{{u}}-{{key}}--{{index}}</li>
+        </ul>
+    </div>
+
+
+    <script type="text/javascript">
+
+        Vue.config.productionTip = false;
+        new Vue({
+            el: '#root',
+            data: {
+                personList:[
+                    {id: 001, name:'zhangsan', age: 14},
+                    {id: 002, name:'lisi', age: 15},
+                    {id: 003, name:'wangwu', age: 16}
+                ],
+                str: 'apple',
+                university: {name: 'xiamenu',position:'xiamen',ability:'985,211'}
+                   
+                }
+            })
+    </script>
+    
+</body>
+</html>

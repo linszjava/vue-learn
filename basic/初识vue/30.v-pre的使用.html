@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js" ></script>
+</head>
+<body>
+    <div id="root">
+        <!-- v-pre的使用 -->
+        <!-- 查看结果可知 v-pre是告诉vue你不需要解析我后面的内容 
+          所以如果你在类似于插值语法中使用v-pre 那么vue自然就不帮你解析
+        -->
+        <h3 v-pre>你好，我是林谦</h3>
+        <h3 v-pre>{{showInfo}}</h3>
+
+    </div>
+
+
+    <script type="text/javascript">
+
+        Vue.config.productionTip = false;
+        new Vue({
+            el: '#root',
+            data: {
+                showInfo: 'xiamenu'
+                   
+                }
+            })
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js" ></script>
+</head>
+<body>
+    <div id="root">
+        <!-- 条件渲染 -->
+        <!-- 1. v-if v-show 的基本使用 -->
+        <div v-if="isIf"> 林谦 </div>
+        <div v-show="isShow"> 林谦2 </div>
+
+        <!-- 2. v-if 搭配v-else v-else-if 使用 类比Java -->
+        <div v-if="n === 4">n = 4 时 我被显示</div>
+        <div v-else-if="n ===3">n = 3 时我被显示 </div>
+        <div v-else> 当n != 3 or n!=4 时 我被显示</div>
+        <button @click="n++">点我n+1</button>
+        <span>当前n的值是{{n}}</span>
+
+        <!-- 3. v-if 与templete 合用 注意 v-show 不可与templete合用 -->
+        <template v-if="true">
+            <p>厦大</p>
+            <p>浙大</p>
+            <p>福大</p>
+        </template>
+
+    </div>
+
+
+    <script type="text/javascript">
+
+        Vue.config.productionTip = false
+        new Vue({
+            el: '#root',
+            data: {
+                isIf: false ,
+                isShow: true ,
+                n: 0 
+                   
+                }
+            })
+    </script>
+    
+</body>
+</html>

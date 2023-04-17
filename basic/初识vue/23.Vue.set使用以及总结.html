@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button{
+            margin-top: 10px;
+        }
+    </style>
+    <script type="text/javascript" src="../js/vue.js" ></script>
+    
+</head>
+<body>
+    <div id="root">
+        <!-- Vue.set()的使用以及总结  -->
+        <h2>学生信息</h2>                           <br/>
+        <button @click="student.age++">年龄加1岁</button><br/>
+        <button @click="addSex">添加性别属性 默认值为男性</button><br/>
+        <button @click="updateSex">修改性别</button><br/>
+        <button @click="addAFriendonTheHead">在列表首位添加一个朋友</button><br/>
+        <button @click="addHobby">添加一个爱好</button><br/>
+        <button @click="updateHobbyToDrive">修改第一个爱好为开车</button><br/>
+        <button @click="filtHobbyOfSmoking">过滤爱好中的抽烟</button><br/>
+        <h3>姓名：{{student.name}}</h3><br/>
+        <h3>年龄：{{student.age}}</h3>
+        <h3 v-if="student.sex">性别：{{student.sex}}</h3>
+        <h3>习惯：</h3>
+        <ul>
+            <li v-for="(h,index) in student.hobby" ::key="index">
+                {{h}}
+            </li>
+        </ul>
+        <h3>朋友们：</h3>
+        <ul>
+            <li v-for="(f,index) in student.friends" ::key="index">
+                {{f.name}} -- {{f.age}}
+            </li>
+        </ul>
+
+    </div>
+
+
+    <script type="text/javascript">
+
+        Vue.config.productionTip = false;
+        new Vue({
+            el: '#root',
+            data: {
+                student:{
+                    name:'linqian',
+                    age: 24,
+                    hobby:['抽烟','喝酒','烫头'],
+                    friends:[
+                        {name: '李清照' , age: 20},
+                        {name: '鱼玄机', age: 22}
+                    ]
+                }
+                   
+                },
+                methods: {
+                    addSex(){
+                    //  Vue.set(this.student,'sex','男') 
+                    // 添加一个非vm级别的data数据
+                    this.$set(this.student, 'sex', '男');
+                    },
+                    updateSex(){
+                        this.student.sex  = '未知'
+                    },
+                    addAFriendonTheHead(){
+                        this.student.friends.unshift({name: '李白', age: 33})
+                    },
+                    addHobby(){
+                        this.student.hobby.push('打游戏')
+                    },
+                    updateHobbyToDrive(){
+                        // this.student.hobby.splice(0,1,'开车')
+                        this.$set(this.student.hobby, 0, '开车');
+                    },
+                    filtHobbyOfSmoking(){
+                        this.student.hobby = this.student.hobby.filter(val=>{
+                            return val != '抽烟'
+                        })
+                    }
+                },
+            })
+    </script>
+    
+</body>
+</html>

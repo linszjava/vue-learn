@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js" ></script>
+</head>
+<body>
+    <div id="root">
+        <h3 :style="{opacity}">{{name}}</h3>
+
+    </div>
+
+
+    <script type="text/javascript">
+
+        Vue.config.productionTip = false;
+        new Vue({
+            el: '#root',
+            data: {
+                name: '谈恋爱有必要要把自己全部托付吗，有没有一种可能，你只是间接性被需要',
+                opacity: 1
+                   
+                },
+            mounted() {
+                setInterval(() => {
+                    this.opacity -= 0.01
+                    if(this.opacity < 0)
+                      this.opacity =1
+                }, 16);
+            },
+            })
+    </script>
+    
+</body>
+</html>

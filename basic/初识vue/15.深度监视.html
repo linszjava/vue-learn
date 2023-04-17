@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js" ></script>
+</head>
+<body>
+    <div id="root">
+        <!-- 使用监视属性实现 -->
+        <h3>今天天气很{{info}}</h3>
+        <button @click="changeWeather">点我切换天气</button> <hr/>
+        <span> a:{{numbers.a}}</span> <br>
+        <button @click="numbers.a++">点我a++</button> <hr/>
+        <span> b:{{numbers.b}}</span> <br>
+        <button @click="numbers.b++">点我b++</button> <hr/>
+
+    </div>
+
+
+    <script type="text/javascript">
+
+        Vue.config.productionTip = false;
+        new Vue({
+            el: '#root',
+            data: {
+                isHot: 'true',
+                numbers:{
+                    a: 1,
+                    b: 2
+                }
+                   
+                },
+            methods: {
+                changeWeather(){
+                    return this.isHot = !this.isHot;
+                }
+            },
+            // 使用计算属性 改变isHot所表示的含义
+            computed:{
+                info(){
+                    return this.isHot? '炎热': '凉爽'
+                }
+            },
+            watch:{
+                info:{
+                    immediate:true, // 立马执行一次handler
+                    handler(newVal,oldVal){
+                        console.log('天气为',newVal,oldVal);
+                    }
+                },
+                'numbers.a'(){
+                    console.log('a被调用了');
+                },
+                numbers:{
+                    // 注意 此处不能用简写
+                    deep: true,  // 此为深度监视 默认不开启
+                    handler(){
+                        console.log('numbers中有数据被调用了');
+                    }
+
+                    
+                }
+
+                // 此为监视属性的简写形式 注意 该写法只能存在只有一个handler参数
+                // info(newVal,oldVal){
+                //     console.log('天气为',newVal,oldVal);
+
+                // }
+            }
+            })
+            
+    </script>
+    
+</body>
+</html>

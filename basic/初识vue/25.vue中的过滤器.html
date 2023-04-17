@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js" ></script>
+    <script type="text/javascript" src="../js/dayjs.min.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- 利用时间戳 转换成 YYYY-MM-DD HH:mm:ss -->
+        <h2>现在的时间是</h2>
+        <h2>时间戳为 {{timestamp}}</h2>
+        <h2>计算属性实现 {{timeComputed}} </h2>
+        <h2>方法实现 {{getTime()}}</h2>
+        <h2>过滤器实现{{timestamp | myTimeFilter}}</h2>
+        <h2>过滤器实现且只有年月日 {{timestamp | myTimeFilter('YYYY-MM-DD')}}</h2>
+        <h2>过滤器实现{{timestamp | myTimeFilter | mySplice}}</h2>
+
+    </div>
+    <div id="root2">
+        <h2>过滤器实现{{timestamp | myGlobalSplice}}</h2>
+
+    </div>
+
+
+    <script type="text/javascript">
+
+        Vue.config.productionTip = false;
+        // 全局过滤器
+        Vue.filter('myGlobalSplice',function(value){
+            return value.slice(0,4)
+        })
+
+        new Vue({
+            el: '#root',
+            data: {
+                timestamp: 1681380849552,
+    
+                   
+                },
+            computed:{
+                timeComputed(){
+                    return dayjs(this.timestamp).format('YYYY-MM-DD HH:mm:ss')
+                }
+            },
+            methods: {
+                getTime(){
+                    return dayjs(this.timestamp).format('YYYY-MM-DD HH:mm:ss')
+                }
+            },
+            filters:{
+                myTimeFilter(value, str='YYYY-MM-DD HH:mm:ss'){
+                     return dayjs(value).format(str)
+                    // console.log('@@',value);
+                },
+                mySplice(value){
+                    return value.slice(0,4)
+                    // console.log(value)
+                }
+            }
+            })
+
+            new Vue({
+                el: '#root2',
+                data:{
+                    timestamp: 1681380849552,
+                }
+            })
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js" ></script>
+</head>
+<body>
+    <div id="root">
+        <!-- 第三步  直接使用 -->
+        {{name}}
+        <xuexiao/> 
+        <student2></student2>
+        <xuexiao2/> 
+
+    </div>
+
+
+    <script type="text/javascript">
+
+        Vue.config.productionTip = false;
+
+        // 第一步 定义一个组件
+        const school = Vue.extend({
+            template: `
+            <div>
+                <h3>学校名称：{{name}}</h3>
+                <h3>学校地址:{{addr}}</h3>
+            </div>
+            `,
+            data() {
+                return {
+                    name: 'xmu',
+                    addr: 'xiamen'
+                };
+            },
+        });
+
+        const school2 = Vue.extend({
+            template: `
+            <div>
+                <h3>学校名称：{{name}}</h3>
+                <h3>学校地址:{{addr}}</h3>
+            </div>
+            `,
+            data() {
+                return {
+                    name: 'xmu',
+                    addr: 'xiamen'
+                };
+            },
+        });
+
+        //  ① 编写组件
+        const student2 = Vue.extend({
+            template: `
+            <div>
+                <h3>学生名称：{{name}}</h3>
+                <h3>学生年龄: {{age}}</h3>
+            </div>
+            `,
+            data() {
+                return {
+                    name: 'linqian',
+                    age: 18
+                };
+            },
+        });
+
+        // 全局注册这个组件  注意 这个Vue.component不能写太上面，不然渲染时可能找不到报错
+        Vue.component('xuexiao',school)
+        Vue.component('xuexiao2',school2)
+        Vue.component('student2',student2)
+
+        new Vue({
+            el: '#root',
+            data() {
+                return {
+                    name: '你好啊',
+                };
+            },
+            // ② 局部声明一个组件 
+            // components: {
+            //     student
+            // }
+            })
+    </script>
+    
+</body>
+</html>

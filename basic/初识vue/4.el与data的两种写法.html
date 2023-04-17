@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.el与data的两种写法</title>
+    <script type="text/javascript" src="../js/vue.js" ></script>
+</head>
+<body>
+    <div id="root">
+        <h1>hello , {{name}}</h1>
+
+    </div>
+
+
+    <script type="text/javascript">
+         Vue.config.productionTip = false;
+        const vm = new Vue({
+            // el: '#root',  // el的第一张写法 
+            // data: {     // data写法一
+            //      name: "林谦"  
+            //     }
+            // }
+            data() {     // data 写法二
+                return {
+                     name: 'dashuige',
+                };
+            },
+        }
+            )
+            console.log('@@@@',vm);
+            vm.$mount("#root");  // el的第二种写法
+    </script>
+    
+</body>
+</html>

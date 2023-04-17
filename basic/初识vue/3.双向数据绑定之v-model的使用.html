@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.双向数据绑定之v-model的使用</title>
+    <script type="text/javascript" src="../js/vue.js" ></script>
+</head>
+<body>
+    <!-- 说明： v-mode:value 的书写可以简写为v-model,且双向绑定只能运用于表单类含value值中，所以该value才能被简写去掉 -->
+    <div id="root">
+        单向数据绑定：<input type="text" :value="name"></input><br>
+        双向数据绑定: <input type="text" v-model="name"></input>
+
+    </div>
+
+
+    <script type="text/javascript">
+        new Vue({
+            el: '#root',
+            data: {
+                 name: "linsz"  
+                }
+            })
+    </script>
+    
+</body>
+</html>

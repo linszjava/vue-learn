@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js" ></script>
+</head>
+<body>
+    <div id="root">
+        <!-- 表单制作 -->
+        <form @submit.prevent="addAllRecords">
+        账号: <input type="text" v-model.trim="userInfo.account"></input>       <br/>
+        密码: <input type="password" v-model="userInfo.password"></input>  <br/>
+        年龄: <input type="number" v-model.number="userInfo.age"></input>  <br/>
+        性别：<input type="radio" name="sex" value="man" v-model="userInfo.sex">男</input>
+            <input type="radio" name="sex" value="female" v-model="userInfo.sex">女</input>  <br/>
+        爱好：<input type="checkbox" name="hobby" value="chifan" v-model="userInfo.hobby">吃饭</input>
+            <input type="checkbox" name="hobby" value="shuijiao" v-model="userInfo.hobby">睡觉</input>
+            <input type="checkbox" name="hobby" value="dushi" v-model="userInfo.hobby">读诗</input> <br/>
+        城市：
+            <select v-model="userInfo.city">
+                <option value="">请选择校区</option>
+                <option name="city" value="beijing" >北京</option></option>
+                <option  name="city" value="hangzhou" >杭州</option></option>
+                <option  name="city" value="xiamen" >厦门</option>
+            </select>
+            备注：<textarea v-model.lazy="userInfo.other"></textarea> <br/>
+            <input type="checkbox" v-model="userInfo.agree">我同意该协议<a href="http://linszjava.github.io">《xxx安全协议》</a></input> <br/>
+            <button>提交</button>
+        </form>
+
+    </div>
+
+
+    <script type="text/javascript">
+
+        Vue.config.productionTip = false;
+        new Vue({
+            el: '#root',
+            data: {
+                userInfo:{
+                    account: '',
+                    password: '',
+                    age: 18,
+                    sex: 'female',
+                    hobby:[],
+                    city: 'beijing',
+                    other: '',
+                    agree: ''
+                }
+                   
+                },
+                methods: {
+                    addAllRecords(){
+                        console.log(JSON.stringify(this.userInfo))
+                    }
+                        
+                
+                },
+            })
+    </script>
+    
+</body>
+</html>

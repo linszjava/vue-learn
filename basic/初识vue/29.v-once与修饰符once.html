@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js" ></script>
+</head>
+<body>
+    <div id="root">
+        <!-- v-once 的使用 它是渲染一次 以后都当成静态指令了 -->
+        <!-- 而修饰符once是只用一次 -->
+        <h3 v-once>初始的n值是 {{n}}</h3>
+        <h3>当前的n值是 {{n}}</h3>
+        <button @click="n++">点我n++</button>
+
+    </div>
+
+
+    <script type="text/javascript">
+
+        Vue.config.productionTip = false;
+        new Vue({
+            el: '#root',
+            data: {
+                n:1
+                   
+                }
+            })
+    </script>
+    
+</body>
+</html>
