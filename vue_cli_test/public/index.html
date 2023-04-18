@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <!-- 字符集 -->
+    <meta charset="utf-8">
+    <!-- 设置如果是ie浏览器则为最高渲染模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 移动端的移动视口 -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!-- 指引网站的头像 -->
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <!-- 网站的标题 该内容指向了package.json中的name的value -->
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
+  <body>
+    <!-- 当网站无法加载js时将显示该句 -->
+    <noscript>
+      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <!-- 容器 -->
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
