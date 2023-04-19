@@ -4,12 +4,14 @@
         <h3>学校地址：{{addr}}</h3>
         <button @click="showDOM" ref="r2">点我显示上方的dom元素</button>
         <Student ref="r3"></Student>
+        <button @click="showName">点我显示学校姓名</button>
         
     </div>
 </template>
 
 <script>
 import Student from '@/components/Student'
+import { hunhe } from '@/mixin';
 export default {
     name: 'School',
 
@@ -29,7 +31,9 @@ export default {
             console.log(this.$refs.r2);
             console.log(this.$refs.r3);
         }
-    }
+    },
+
+    mixins:[hunhe]
 };
 </script>
 

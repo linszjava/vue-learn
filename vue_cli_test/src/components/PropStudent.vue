@@ -5,6 +5,7 @@
         <h3>学生年龄:{{ realAge +1 }}</h3>
         <h3>学生性别:{{ sex }}</h3>
         
+        
     </div>
 </template>
 

@@ -3,6 +3,11 @@ import Vue from 'vue'
 // 引入App.vue文件
 import App from './App.vue'
 
+import plugins from './plugins'
+
+// 使用vue插件
+Vue.use(plugins)
+
 // 关闭生产提示
 Vue.config.productionTip = false
 
