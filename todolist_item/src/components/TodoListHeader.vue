@@ -25,6 +25,7 @@ export default {
           // 封装nanoid
           const todoObj = { id: nanoid(), name: this.todoTitle, done: false}
           this.globalTodoObj(todoObj)
+          this.todoTitle= ''
 
         }
     },

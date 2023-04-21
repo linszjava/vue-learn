@@ -1,12 +1,12 @@
 <template>
     <div class="todo-footer">
         <label>
-          <input type="checkbox"/>
+          <input type="checkbox" :checked="isChecked" @click="isAll"/>
         </label>
         <span>
-          <span>已完成 {{ finishedTodos }}</span> / 全部 {{ todos.length }}
+          <span>已完成 {{ finishedTodos }}</span> / 全部 {{ total  }}
         </span>
-        <button class="btn btn-danger">清除已完成任务</button>
+        <button class="btn btn-danger" @click="clearFinishedTodos">清除已完成任务</button>
       </div>
 </template>
 
@@ -19,13 +19,30 @@ export default {
             
         };
     },
-    props:['todos'],
+    props:['todos','clearFinished'],
 
     mounted() {
         
     },
 
     methods: {
+      isAll(e){
+        // console.log('####',e.target.checked);
+        if(e.target.checked){
+          this.todos.forEach(todo => {
+            return todo.done = true 
+          });
+        }else{
+          this.todos.forEach(todo => {
+            return todo.done = false 
+          });
+        }
+      },
+      clearFinishedTodos(){
+        this.clearFinished()
+        
+      }
+
         
     },
     computed:{
@@ -34,6 +51,12 @@ export default {
           return pre + (current.done ? 1: 0)
         },0)
         return finished;
+      },
+      total(){
+        return this.todos.length
+      },
+      isChecked(){
+        return this.finishedTodos === this.total && this.total > 0
       }
     }
 };

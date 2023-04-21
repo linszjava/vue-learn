@@ -7,7 +7,8 @@
       <todo-list-list :todos="todos" 
       :handleChecked="handleChecked"
       :handleDelete="handleDelete"></todo-list-list>
-      <todo-list-footer :todos="todos"></todo-list-footer>
+      <todo-list-footer :todos="todos"
+      :clearFinished="clearFinished"></todo-list-footer>
     </div>
   </div>
 </div>
@@ -42,6 +43,7 @@ export default {
     methods:{
       globalTodoObj(todoObj){
         this.todos.unshift(todoObj)
+        
       },
       // 判断是否勾选
       handleChecked(id){
@@ -54,6 +56,12 @@ export default {
        this.todos = this.todos.filter((todo)=>{
         return todo.id !== id
        })
+      },
+      // 清除已完成的
+      clearFinished(){
+        this.todos = this.todos.filter(todo =>{
+          return todo.done !== true
+        })
       }
     }
 }
