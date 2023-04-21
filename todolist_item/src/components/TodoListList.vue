@@ -1,10 +1,12 @@
 <template>
     <div>
-        <ul class="todo-main">
-         <todo-list-item/>
-         <todo-list-item/>
-         <todo-list-item/>
-         <todo-list-item/>
+        <ul class="todo-main">  
+          <!-- 下面的qwe是随便取的 但是你要通过子组件带过去并且让子组件中用props接收 只不过为了方便使用 用 :todo="todo" -->
+         <todo-list-item v-for="todo in todos"  
+         :key="todo.id" 
+         :todo="todo"
+         :handleChecked="handleChecked"
+         :handleDelete="handleDelete"></todo-list-item>
       </ul>
     </div>
 </template>
@@ -13,19 +15,19 @@
 import TodoListItem from './TodoListItem.vue';
 export default {
   components: { TodoListItem },
-    name: 'TodoListList',
+  name: 'TodoListList',
 
-    data() {
-        return {
-            
-        };
-    },
+  props:['todos', 'handleChecked', 'handleDelete'],
+
+
+   
 
     mounted() {
         
     },
 
     methods: {
+      
         
     },
 };

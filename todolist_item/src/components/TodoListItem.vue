@@ -2,10 +2,14 @@
     <div>
         <li>
           <label>
-            <input type="checkbox"/>
-            <span>xxxxx</span>
+            <input type="checkbox" 
+            :checked="todo.done"
+            @click="isChecked(todo.id)"
+            :handleChecked="handleChecked"
+            :handleDelete="handleDelete"/>
+            <span>{{todo.name}}</span>
           </label>
-          <button class="btn btn-danger" style="display:none">删除</button>
+          <button class="btn btn-danger" @click="deleteItem(todo.id)" >删除</button>
         </li>
     </div>
 </template>
@@ -19,14 +23,18 @@ export default {
             
         };
     },
-
-    mounted() {
-        
-    },
-
-    methods: {
-        
-    },
+    props:['todo','handleChecked','handleDelete'],
+    methods:{
+      // 处理checked方法
+      isChecked(id){
+        this.handleChecked(id)
+      },
+      // 删除一个ToDo item项
+      deleteItem(id){
+         this.handleDelete(id)
+       
+      }
+    }
 };
 </script>
 
@@ -64,5 +72,11 @@ li:before {
 
 li:last-child {
   border-bottom: none;
+}
+li:hover{
+  background-color: #ddd;
+}
+li:hover button {
+  display: block;
 }
 </style>

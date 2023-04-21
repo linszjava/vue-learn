@@ -3,9 +3,11 @@
     <div id="root">
   <div class="todo-container">
     <div class="todo-wrap">
-      <todo-list-header></todo-list-header>
-      <todo-list-list></todo-list-list>
-      <todo-list-footer></todo-list-footer>
+      <todo-list-header :globalTodoObj="globalTodoObj"></todo-list-header>
+      <todo-list-list :todos="todos" 
+      :handleChecked="handleChecked"
+      :handleDelete="handleDelete"></todo-list-list>
+      <todo-list-footer :todos="todos"></todo-list-footer>
     </div>
   </div>
 </div>
@@ -26,7 +28,34 @@ export default {
     TodoListFooter,
     TodoListList
 
-  }
+  },
+  data() {
+        return {
+            todos: [
+                { id: '001', name: '打代码', done: true},
+                { id: '002', name: '学习', done: false},
+                { id: '003', name: '泡妞', done: true}
+            ]
+            
+        };
+    },
+    methods:{
+      globalTodoObj(todoObj){
+        this.todos.unshift(todoObj)
+      },
+      // 判断是否勾选
+      handleChecked(id){
+        this.todos.forEach((todo)=>{
+          if(id === todo.id) todo.done = ! todo.done
+        })
+      },
+      // 删除一个todo项
+      handleDelete(id){
+       this.todos = this.todos.filter((todo)=>{
+        return todo.id !== id
+       })
+      }
+    }
 }
 </script>
 
