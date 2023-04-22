@@ -3,8 +3,11 @@
         <h3 ref="r1">学校名称：{{name}}</h3>
         <h3>学校地址：{{addr}}</h3>
         <button @click="showDOM" ref="r2">点我显示上方的dom元素</button>
-        <Student ref="r3"></Student>
-        <button @click="showName">点我显示学校姓名</button>
+        <Student ref="r3"></Student>      
+        <button @click="showName">点我显示学校姓名</button> <br/>
+        <button @click="sendSchoolName">把学校名给APP</button>
+    
+
         
     </div>
 </template>
@@ -14,6 +17,8 @@ import Student from '@/components/Student'
 import { hunhe } from '@/mixin';
 export default {
     name: 'School',
+
+    props:['getSchoolName'],
 
     data() {
         return {
@@ -30,6 +35,9 @@ export default {
             console.log(this.$refs.r1);  // 使用ref可以获得html标签或者子组件
             console.log(this.$refs.r2);
             console.log(this.$refs.r3);
+        },
+        sendSchoolName(){
+            this.getSchoolName(this.name)
         }
     },
 
@@ -40,6 +48,9 @@ export default {
 <style>
  .demo{
     background-color: aqua;
+ }
+ button{
+    margin-top: 10px;
  }
 
 
