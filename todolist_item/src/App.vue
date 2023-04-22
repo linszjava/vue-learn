@@ -32,11 +32,7 @@ export default {
   },
   data() {
         return {
-            todos: [
-                { id: '001', name: '打代码', done: true},
-                { id: '002', name: '学习', done: false},
-                { id: '003', name: '泡妞', done: true}
-            ]
+            todos: JSON.parse(localStorage.getItem('todos')) || []
             
         };
     },
@@ -62,6 +58,14 @@ export default {
         this.todos = this.todos.filter(todo =>{
           return todo.done !== true
         })
+      }
+    },
+    watch:{
+      todos:{
+        deep:true,
+        handler(value){
+          localStorage.setItem('todos',JSON.stringify(value)) 
+        }
       }
     }
 }

@@ -1,5 +1,5 @@
 <template>
-    <div class="todo-footer">
+    <div class="todo-footer" v-show="total === 0 ? false: true">
         <label>
           <input type="checkbox" :checked="isChecked" @click="isAll"/>
         </label>
@@ -53,7 +53,7 @@ export default {
         return finished;
       },
       total(){
-        return this.todos.length
+        return this.todos.length 
       },
       isChecked(){
         return this.finishedTodos === this.total && this.total > 0

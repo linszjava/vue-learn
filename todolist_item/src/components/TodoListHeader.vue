@@ -22,6 +22,8 @@ export default {
     methods: {
         addTodoObj(e){
           this.todoTitle = e.target.value
+          // 如果为空 不能显示添加一个todo项
+          if(this.todoTitle.trim() === '') return
           // 封装nanoid
           const todoObj = { id: nanoid(), name: this.todoTitle, done: false}
           this.globalTodoObj(todoObj)
