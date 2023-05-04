@@ -1,10 +1,10 @@
 <template>
-    <div>
+    <div class="demo">
         <h3>学生姓名:{{ name }}</h3>
         <h3>学生年龄:{{ age }}</h3>
-        <button @click="showName">点我显示学生姓名</button>
+        <!-- <button @click="showName">点我显示学生姓名</button>
         <button @click="showStudentName">点我把学生名给APP</button>
-        
+         -->
     </div>
 </template>
 
@@ -29,4 +29,10 @@ export default {
 
 };
 </script>
+
+<style scoped>
+ .demo{
+    background-color:orange;
+ }
+</style>
 

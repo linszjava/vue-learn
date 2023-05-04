@@ -1,7 +1,5 @@
 <template>
   <div>
-    <h3>学校的名字是{{ schoolName }}</h3>
-    <h3>学生的名字是{{ studentName }}</h3>
     <!-- <h3>使用$ref 学生的名字是{{ refStudentName }}</h3> -->
     <!-- 把学校名给app -->
     <!-- 方法1 使用props加提前制定好的函数 -->
@@ -22,11 +20,10 @@
 </template>
 
 <script>
-import PropStudent from './components/PropStudent.vue';
 import School from './components/School.vue';
 import Student from './components/Student.vue';
 export default {
-  components: { School, PropStudent, Student },
+  components: { School, Student },
   name: 'App',
   data() {
     return {
@@ -60,6 +57,6 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>

@@ -2,10 +2,10 @@
     <div class="demo">
         <h3 ref="r1">学校名称：{{name}}</h3>
         <h3>学校地址：{{addr}}</h3>
-        <button @click="showDOM" ref="r2">点我显示上方的dom元素</button>
-        <Student ref="r3"></Student>      
-        <button @click="showName">点我显示学校姓名</button> <br/>
-        <button @click="sendSchoolName">把学校名给APP</button>
+        <!-- <button @click="showDOM" ref="r2">点我显示上方的dom元素</button> -->
+        <!-- <Student ref="r3"></Student>       -->
+        <!-- <button @click="showName">点我显示学校姓名</button> <br/>
+        <button @click="sendSchoolName">把学校名给APP</button> -->
     
 
         
