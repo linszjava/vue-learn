@@ -19,7 +19,8 @@ export default {
             
         };
     },
-    props:['todos','clearFinished'],
+    // props:['todos','clearFinished'],
+    props:['todos'],
 
     mounted() {
         
@@ -39,7 +40,8 @@ export default {
         }
       },
       clearFinishedTodos(){
-        this.clearFinished()
+        // this.clearFinished()
+        this.$emit('clearFinished');
         
       }
 

@@ -17,7 +17,7 @@ export default {
             
         };
     },
-    props:['globalTodoObj'],
+    // props:['globalTodoObj'],  // 使用this.$emit完成子组件向父组件传递消息
 
     methods: {
         addTodoObj(e){
@@ -26,7 +26,8 @@ export default {
           if(this.todoTitle.trim() === '') return
           // 封装nanoid
           const todoObj = { id: nanoid(), name: this.todoTitle, done: false}
-          this.globalTodoObj(todoObj)
+          // this.globalTodoObj(todoObj)
+          this.$emit('globalTodoObj', todoObj);
           this.todoTitle= ''
 
         }

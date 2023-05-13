@@ -5,6 +5,7 @@
         <!-- <button @click="showName">点我显示学生姓名</button>
         <button @click="showStudentName">点我把学生名给APP</button>
          -->
+         <button @click="sendStudentNameToSchool">点我把学生名发给兄弟组件school</button>
     </div>
 </template>
 
@@ -23,6 +24,9 @@ export default {
     methods:{
         showStudentName(){
             this.$emit('getStudentName',this.name)
+        },
+        sendStudentNameToSchool(){
+            this.$bus.$emit('sendStudentNameToBro',this.name)
         }
     }
     

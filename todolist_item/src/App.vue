@@ -3,12 +3,15 @@
     <div id="root">
   <div class="todo-container">
     <div class="todo-wrap">
-      <todo-list-header :globalTodoObj="globalTodoObj"></todo-list-header>
+      <!-- <todo-list-header :globalTodoObj="globalTodoObj"></todo-list-header> -->
+      <todo-list-header @globalTodoObj="globalTodoObj"></todo-list-header>
       <todo-list-list :todos="todos" 
       :handleChecked="handleChecked"
       :handleDelete="handleDelete"></todo-list-list>
+      <!-- <todo-list-footer :todos="todos"
+      :clearFinished="clearFinished"></todo-list-footer> -->
       <todo-list-footer :todos="todos"
-      :clearFinished="clearFinished"></todo-list-footer>
+      @clearFinished="clearFinished"></todo-list-footer>
     </div>
   </div>
 </div>

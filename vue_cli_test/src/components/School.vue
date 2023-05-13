@@ -2,6 +2,7 @@
     <div class="demo">
         <h3 ref="r1">学校名称：{{name}}</h3>
         <h3>学校地址：{{addr}}</h3>
+        <h3>该校有一学生的名字是:{{ aStudentName }}</h3>
         <!-- <button @click="showDOM" ref="r2">点我显示上方的dom元素</button> -->
         <!-- <Student ref="r3"></Student>       -->
         <!-- <button @click="showName">点我显示学校姓名</button> <br/>
@@ -23,7 +24,8 @@ export default {
     data() {
         return {
             name: '厦门大学',
-            addr: '厦门'
+            addr: '厦门',
+            aStudentName:''
             
         };
     },
@@ -39,6 +41,13 @@ export default {
         sendSchoolName(){
             this.getSchoolName(this.name)
         }
+    },
+    mounted(){
+        this.$bus.$on('sendStudentNameToBro',(studentName)=>{
+            console.log('我接收到了兄弟组件student发送过来的数据',studentName)
+            this.aStudentName = studentName
+        
+        })
     },
 
     mixins:[hunhe]
