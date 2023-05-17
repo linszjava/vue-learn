@@ -2,14 +2,19 @@
     <div>
         <li>
           <label>
-            <input type="checkbox" 
+            <input  type="checkbox" 
             :checked="todo.done"
             @click="isChecked(todo.id)"
             :handleChecked="handleChecked"
             :handleDelete="handleDelete"/>
-            <span>{{todo.name}}</span>
+            <span v-show="!todo.isEdit">{{todo.name}}</span>
+            <input v-show="todo.isEdit" type="text" 
+            :value="todo.name"
+             @blur="handleBlur(todo,$event)"
+             ref="inputTitle"/>
           </label>
-          <button class="btn btn-danger" @click="deleteItem(todo.id)" >删除</button>
+          <button class="btn btn-danger" @click="deleteItem(todo.id)">删除</button>
+          <button class="btn btn-edit" @click="handleEdit(todo)"  >编辑</button>
         </li>
     </div>
 </template>
@@ -27,12 +32,34 @@ export default {
     methods:{
       // 处理checked方法
       isChecked(id){
-        this.handleChecked(id)
+        // this.handleChecked(id)
+        this.$bus.$emit('handleChecked',id)
       },
       // 删除一个ToDo item项
       deleteItem(id){
-         this.handleDelete(id)
+        //  this.handleDelete(id)
+        this.$bus.$emit('clearFinished',id)
        
+      },
+      handleEdit(todo){
+        // 处理使之可编辑
+        if(todo.hasOwnProperty('isEdit')){
+          todo.isEdit = true
+        }else{
+          this.$set(todo,'isEdit',true)
+          
+        }
+        this.$nextTick(function () {
+            this.$refs.inputTitle.focus()
+        });
+        
+      },
+      handleBlur(todo,e){
+        // 当失去焦点时
+        todo.isEdit = false
+        // console.log('@@',e.target.value);
+        this.$bus.$emit('updateTodo',todo.id,e.target.value)
+
       }
     }
 };

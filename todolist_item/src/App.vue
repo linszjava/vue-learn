@@ -5,9 +5,10 @@
     <div class="todo-wrap">
       <!-- <todo-list-header :globalTodoObj="globalTodoObj"></todo-list-header> -->
       <todo-list-header @globalTodoObj="globalTodoObj"></todo-list-header>
-      <todo-list-list :todos="todos" 
+      <todo-list-list :todos="todos" ></todo-list-list>
+      <!-- <todo-list-list :todos="todos" 
       :handleChecked="handleChecked"
-      :handleDelete="handleDelete"></todo-list-list>
+      :handleDelete="handleDelete"></todo-list-list> -->
       <!-- <todo-list-footer :todos="todos"
       :clearFinished="clearFinished"></todo-list-footer> -->
       <todo-list-footer :todos="todos"
@@ -61,6 +62,11 @@ export default {
         this.todos = this.todos.filter(todo =>{
           return todo.done !== true
         })
+      },
+      updateTodo(id,title){
+        this.todos.forEach((todo)=>{
+          if(id === todo.id) todo.name = title
+        })
       }
     },
     watch:{
@@ -70,6 +76,14 @@ export default {
           localStorage.setItem('todos',JSON.stringify(value)) 
         }
       }
+    },
+    mounted(){
+      this.$bus.$on('handleChecked',this.handleChecked)
+      this.$bus.$on('clearFinished',this.clearFinished)
+      this.$bus.$on('updateTodo',this.updateTodo)
+    },
+    beforeDestroy(){
+      this.$bus.this.$off(['handleChecked','clearFinished','updateTodo']);
     }
 }
 </script>
@@ -98,6 +112,11 @@ body {
   color: #fff;
   background-color: #da4f49;
   border: 1px solid #bd362f;
+}
+.btn-edit {
+  color: #fff;
+  background-color: skyblue;
+  border: 1px solid skyblue;
 }
 
 .btn-danger:hover {

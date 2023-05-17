@@ -5,6 +5,8 @@ import App from './App.vue'
 
 import plugins from './plugins'
 
+import store from './store'
+
 // 使用vue插件
 Vue.use(plugins)
 
@@ -18,6 +20,7 @@ new Vue({
   el: '#app',
   render: h => h(App),  // 该行存在的意义 在第2行引入的vue是不完整的vue.**.esm.js，所以需要render加以渲染模版
                         // 为什么这么做？ 为了轻 ！
+  store,
   
   beforeCreate(){
     // 绑定全局事件总线
