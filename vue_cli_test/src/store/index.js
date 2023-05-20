@@ -6,10 +6,6 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const actions = {
-    // increment(context,value){
-    //     console.log('actions被调用了',context,value);
-    //     context.commit('Increment',value)
-    // },
     decrement(context,value){
         context.commit('Decrement',value)
     },
@@ -39,6 +35,9 @@ const mutations = {
     },
     IncrementWait(state,value){
         state.sum += value
+    },
+    ADD_PERSON(state, value){
+        state.personList.unshift(value)
     }
 
 }
@@ -50,6 +49,9 @@ const getters = {
 
 const state = {
     sum: 0,
+    school: '厦门大学',
+    studentName: '林谦',
+    personList: [{id: 1001, name: '林谦'}]
 }
 
 
