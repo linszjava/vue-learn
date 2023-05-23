@@ -1,35 +1,30 @@
 <template>
   <div> 
-    <Counter/>
-    <hr/>
-    <person/>
+    <Header></Header>
+    <router-link active-class="active" to="/home">首页</router-link>  |
+    <router-link active-class="active" to="/about">关于</router-link>
+
+    <div>
+      <router-view></router-view>
+    </div>
+
+    
+   
   </div>
 </template>
 
 <script>
 
-import Counter from './components/Counter.vue';
-import Person from './components/Person.vue';
+
+import Header from './components/Header.vue';
 export default {
-  components:  {Counter, Person},
+  components:  {Header},
   name: 'App',
   data() {
     return {
 
     };
-  },
-  methods:{
-  },
-  mounted(){
-
-    // console.log(this);
-
-
   }
-    
-
-  
-
 
 };
 </script>
