@@ -8,7 +8,8 @@ import News from '@/pages/News'
 import Message from '@/pages/Message'
 import Details from '@/pages/Details'
 
-export default new VueRouter({
+ const router =  new VueRouter({
+    mode: "history",
     routes:[
         {
             name: 'guanyu', // 路由命名，使用见home
@@ -24,12 +25,31 @@ export default new VueRouter({
                     path: 'news',
                     component: News,
                     // 写法一 对象 见News页面
-                    props: {a:1 ,b:' hello'}
+                    props: {a:1 ,b:' hello'},
+                    meta:{isAuth:true,title:'新闻'},
+                    // 独享路由
+                    beforeEnter:(to,from,next)=>{
+                        console.log('beforeEnter--------');
+                        if(to.meta.isAuth){
+                            // 表示需要鉴权
+                            if(localStorage.getItem('name') === 'linsz'){
+                                // 如果用户名是linsz 则放行
+                                next()
+                            }else{
+                                alert('您没有权限，请联系管理员')
+                            }
+                        }else{
+                            // 无需鉴权 直接放行
+                            next()
+                        }
+                    }
+                    
                     
                 },
                 {
                     path: 'message',
                     component: Message,
+                    meta:{isAuth:true,title:'消息'},
                     children:[
                         {
                             name: 'xiangqing',
@@ -51,3 +71,28 @@ export default new VueRouter({
         }
     ]
 })
+
+// 全局前置和后置路由守卫
+router.beforeEach((to,from,next)=>{
+    if(to.meta.isAuth){
+        // 表示需要鉴权
+        if(localStorage.getItem('name') === 'linsz'){
+            // 如果用户名是linsz 则放行
+            next()
+        }else{
+            alert('您没有权限，请联系管理员')
+        }
+    }else{
+        // 无需鉴权 直接放行
+        next()
+    }
+
+})
+// 全局后置守卫 初始化和每一次路由切换后会调用
+router.afterEach((to,from)=>{
+    console.log(to,from);
+    document.title = to.meta.title || '测试系统'
+
+})
+
+export default router
